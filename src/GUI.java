@@ -1,6 +1,3 @@
-
-
-
 import javax.swing.*;
 import fileIO.FileManager;
 import graphics.*;
