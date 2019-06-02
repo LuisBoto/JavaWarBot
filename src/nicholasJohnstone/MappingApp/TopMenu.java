@@ -29,7 +29,7 @@ public class TopMenu extends JMenuBar{
 		fileMenu.add(openItem);
 		openItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				fileManager.open();
+				fileManager.openFrom();
 			}
 		});
 		fileMenu.addSeparator();

@@ -12,7 +12,7 @@ import javax.imageio.*;
 public class FileManager extends WindowAdapter implements OwnerListener,PlotListener,YearListener {
 
 	private static final String EXTENSION_STRING = "afg";
-	private static final String DEFAULT_IMAGE = "Map.jpg";
+	private static final String DEFAULT_IMAGE = "resources/Map.jpg";
 	private static ArrayList<ImageListener> imageListenerList=new ArrayList<ImageListener>();
 	private static JFrame parent;
 	
@@ -62,7 +62,35 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		return false;
 	}
 	
-	public void open(){
+	public void openDefault() {
+		State state=null;
+		currentFile=new File("resources/defaultState.afg");
+		try {
+			FileInputStream fileIn = new FileInputStream(currentFile);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+ 				state = (State) in.readObject();
+			in.close();
+			fileIn.close();
+		}catch(IOException i) {
+			i.printStackTrace();
+			return;
+		}catch(ClassNotFoundException c) {
+			System.out.println("class not found");
+			c.printStackTrace();
+			return;
+		}
+		OwnerManager.setOwners(state.getOwners());
+		mapPanel.setPlotList(state.getPlots());
+		datePanel.setYearRange(state.getMinYear(),state.getMaxYear());
+		imageFile=state.getImageFile();
+		imageChanged();
+		mapPanel.setImageSize(state.getImageSize());
+		OwnerManager.ownerChanged();
+		parent.setTitle(currentFile.getName());
+		saved=true;
+	}
+	
+	public void openFrom(){
 		if(confirmClose()){
 			if(fileChooser.showOpenDialog(parent)==JFileChooser.APPROVE_OPTION) {
 				State state=null;

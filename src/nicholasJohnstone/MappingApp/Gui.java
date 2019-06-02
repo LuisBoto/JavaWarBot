@@ -22,7 +22,7 @@ public class Gui{
 		DatePanel datePanel= new DatePanel();
 		MapPanel mapPanel = new MapPanel();
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);
-		FileManager fileManager=new FileManager(datePanel,mapPanel);	
+		FileManager fileManager=new FileManager(datePanel,mapPanel);
 		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,datePanel);
 		
 		mainFrame.getContentPane().add(BorderLayout.CENTER,innerPanel);
@@ -33,6 +33,7 @@ public class Gui{
 		innerPanel.add(BorderLayout.SOUTH,datePanel);
 		
 		FileManager.setParentFrame(mainFrame);
+		fileManager.openDefault();
 		OwnerManager.setDialogParent(mainFrame);
 		DeedManager.setDialogParent(mainFrame);
 		DateRangeEditor.setDialogParent(mainFrame);
