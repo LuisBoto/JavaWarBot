@@ -37,8 +37,6 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		this.mapPanel=mapPanel;
 		this.datePanel=datePanel;
 		DrawPanel.addPlotListener(this);
-		DeedManager.addPlotListener(this);
-		OwnerManager.addOwnerListener(this);
 		DatePanel.addYearListener(this);
 		fileChooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(EXTENSION_STRING+" files",EXTENSION_STRING);		
@@ -52,9 +50,9 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 	public boolean newState(){	
 		if(confirmClose()){					
 			currentFile=null;		
-			OwnerManager.setOwners(new TreeSet<Owner>());
+
 			mapPanel.setPlotList(new ArrayList<Plot>());
-			OwnerManager.ownerChanged();
+
 			parent.setTitle("untitled");
 			saved=true;	
 			return true;
@@ -79,13 +77,13 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 			c.printStackTrace();
 			return;
 		}
-		OwnerManager.setOwners(state.getOwners());
+
 		mapPanel.setPlotList(state.getPlots());
 		datePanel.setYearRange(state.getMinYear(),state.getMaxYear());
 		imageFile=state.getImageFile();
 		imageChanged();
 		mapPanel.setImageSize(state.getImageSize());
-		OwnerManager.ownerChanged();
+
 		parent.setTitle(currentFile.getName());
 		saved=true;
 	}
@@ -109,13 +107,13 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 					c.printStackTrace();
 					return;
 				}
-				OwnerManager.setOwners(state.getOwners());
+
 				mapPanel.setPlotList(state.getPlots());
 				datePanel.setYearRange(state.getMinYear(),state.getMaxYear());
 				imageFile=state.getImageFile();
 				imageChanged();
 				mapPanel.setImageSize(state.getImageSize());
-				OwnerManager.ownerChanged();
+
 				parent.setTitle(currentFile.getName());
 				saved=true;
 			}

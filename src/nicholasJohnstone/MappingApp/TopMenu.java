@@ -9,7 +9,6 @@ public class TopMenu extends JMenuBar{
 	
 	public TopMenu(OuterMapPanel outerMapPanel,FileManager fileManager,DatePanel datePanel){
 		buildFileMenu(fileManager);
-		buildEditMenu(outerMapPanel,datePanel);
 		add(Box.createHorizontalGlue());
 		buildZoomMenu(outerMapPanel);	
 	}
@@ -53,32 +52,6 @@ public class TopMenu extends JMenuBar{
 		imageIcon.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				fileManager.importImage();
-			}
-		});
-	}
-		
-	private void buildEditMenu(OuterMapPanel outerMapPanel,DatePanel datePanel){
-		JMenu editMenu= new JMenu("Edit");
-		add(editMenu);
-		JMenuItem addFieldItem= new JMenuItem("Add New Field");
-		editMenu.add(addFieldItem);
-		addFieldItem.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				outerMapPanel.drawShape();		
-			}
-		});
-		JMenuItem addOwnerItem = new JMenuItem("Add New Owner");
-		editMenu.add(addOwnerItem);
-		addOwnerItem.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				OwnerManager.makeNewOwner();		
-			}
-		});
-		JMenuItem editDateIcon= new JMenuItem("Edit Date Range");
-		editMenu.add(editDateIcon);
-		editDateIcon.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				datePanel.editYearRange();		
 			}
 		});
 	}

@@ -32,8 +32,6 @@ public class Gui{
 		
 		FileManager.setParentFrame(mainFrame);
 		fileManager.openDefault();
-		OwnerManager.setDialogParent(mainFrame);
-		DeedManager.setDialogParent(mainFrame);
 		DateRangeEditor.setDialogParent(mainFrame);
 		mainFrame.addWindowListener(fileManager);
 		mainFrame.setVisible(true);

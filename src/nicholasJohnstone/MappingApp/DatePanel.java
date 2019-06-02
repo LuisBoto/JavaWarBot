@@ -61,7 +61,6 @@ class DatePanel extends JPanel implements ChangeListener{
 	}
 		
 	public void yearChanged(){
-		Plot.setCurrentYear(currentYear);
 		for(YearListener x: yearListenerList) {
 			x.yearChanged();
 		}

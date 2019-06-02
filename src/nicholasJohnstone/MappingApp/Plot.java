@@ -10,27 +10,12 @@ class Plot implements Serializable{
 	private static final long serialVersionUID = 1L;	
 	private static final Color DEFAULT_COLOR=new Color(224,224,224);
 	
-	private static int currentYear=0;
-	
 	private Color color=DEFAULT_COLOR;
-	private TreeSet<Deed> Deeds=new TreeSet<Deed>();
 	private ArrayList<DoublePoint> pointList= new ArrayList<DoublePoint>();
 	private Polygon polygon=new Polygon();
-
-	public static void setCurrentYear(int year) {
-		currentYear=year;
-	}
 	
 	public void update() {
-		color=DEFAULT_COLOR;
-		for(Deed Deed: Deeds) {
-			if(currentYear>=Deed.getDate()){
-				color=Deed.getOwner().getColor();
-			} else {
-				return;
-			}	
-		} 
-		return;				
+		color=DEFAULT_COLOR;		
 	}
 
 	public void rescale(double scale){
@@ -41,14 +26,6 @@ class Plot implements Serializable{
 		}
 	}
 	
-	public void addDeed(Deed x){
-		Deeds.add(x);
-	}	
-		
-	public void removeDeed(Deed x){
-		Deeds.remove(x);
-	}
-	
 	public void addPoint(int x,int y){
 		polygon.addPoint(x,y);
 		pointList.add(new DoublePoint(x,y));
@@ -56,15 +33,6 @@ class Plot implements Serializable{
 	
 	public Color getColor() {
 		return color;
-	}
-
-
-	public TreeSet<Deed> getDeeds(){
-		return Deeds;
-	}
-
-	public void setDeeds(TreeSet<Deed> Deeds){
-		this.Deeds=Deeds;
 	}
 
 	public Polygon getPolygon(){

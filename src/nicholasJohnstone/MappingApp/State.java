@@ -8,7 +8,6 @@ public class State implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private TreeSet<Owner> owners;
 	private ArrayList<Plot> fields;
 	private File currentFile;
 	private File imageFile;
@@ -17,17 +16,12 @@ public class State implements Serializable{
 	private int maxYear;
 
 	public State(FileManager fileManager,DatePanel datePanel,MapPanel mapPanel){
-		owners=OwnerManager.getOwners();
 		fields=mapPanel.getPlots();
 		currentFile=fileManager.getFile();
 		imageFile=fileManager.getImageFile();
 		imageSize=mapPanel.getImageSize();
 		minYear=datePanel.getYearMin();
 		maxYear=datePanel.getYearMax();
-	}
-
-	public TreeSet<Owner> getOwners(){
-		return owners;
 	}
 	
 	public ArrayList<Plot> getPlots(){
