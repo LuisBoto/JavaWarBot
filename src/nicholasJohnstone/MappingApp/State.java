@@ -17,12 +17,12 @@ public class State implements Serializable{
 	private DoublePoint imageSize;
 	private int minYear;
 	private int maxYear;
-
-	public State(FileManager fileManager,MapPanel mapPanel){
-		fields=mapPanel.getPlots();
-		currentFile=fileManager.getFile();
-		imageFile=fileManager.getImageFile();
-		imageSize=mapPanel.getImageSize();
+	
+	public State(File documentF, File imageF, ArrayList<Plot> fields, DoublePoint imgSize){
+		this.fields=fields;
+		currentFile=documentF;
+		imageFile=imageF;
+		imageSize=imgSize;
 	}
 	
 	public ArrayList<Plot> getPlots(){
