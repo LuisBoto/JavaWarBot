@@ -9,7 +9,7 @@ import javax.imageio.*;
 /**
  * Provides saving facilities, when window is closed offers to save unsaved progress
  */
-public class FileManager extends WindowAdapter implements OwnerListener,PlotListener,YearListener {
+public class FileManager extends WindowAdapter implements PlotListener {
 
 	private static final String EXTENSION_STRING = "afg";
 	private static ArrayList<ImageListener> imageListenerList=new ArrayList<ImageListener>();
@@ -21,7 +21,6 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 	private JFileChooser fileChooser;
 	private JFileChooser imageChooser;
 	private boolean saved=true;
-	private ButtonPanel datePanel;
 	private MapPanel mapPanel;
 	
 	public static void setParentFrame(JFrame newParent){
@@ -32,9 +31,8 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		imageListenerList.add(x);
 	}
 	
-	public FileManager(ButtonPanel datePanel,MapPanel mapPanel){
+	public FileManager(MapPanel mapPanel){
 		this.mapPanel=mapPanel;
-		this.datePanel=datePanel;
 		DrawPanel.addPlotListener(this);
 		fileChooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(EXTENSION_STRING+" files",EXTENSION_STRING);		
@@ -123,7 +121,7 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		try {
 			FileOutputStream fileOut = new FileOutputStream(currentFile);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(new State(this,datePanel,mapPanel));
+			out.writeObject(new State(this,mapPanel));
 			out.close();
 			fileOut.close();
 			saved=true;

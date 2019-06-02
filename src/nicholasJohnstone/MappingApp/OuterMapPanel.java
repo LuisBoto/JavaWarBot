@@ -7,7 +7,7 @@ import java.awt.image.*;
 import java.awt.*;
 import java.awt.event.*;
 @SuppressWarnings("serial")
-public class OuterMapPanel extends JScrollPane implements ImageListener, OwnerListener,YearListener,PlotListener{	
+public class OuterMapPanel extends JScrollPane implements ImageListener, PlotListener{	
 	
 	final static String MAPPANEL_LABEL = "Map Panel";
 	final static String DRAWPANEL_LABEL = "Draw Panel";

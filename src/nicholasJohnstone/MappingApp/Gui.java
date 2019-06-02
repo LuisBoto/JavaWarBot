@@ -16,7 +16,7 @@ public class Gui{
 		MapPanel mapPanel = new MapPanel();
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);		
 		FileManager.setParentFrame(mainFrame);
-		FileManager fileManager=new FileManager(datePanel,mapPanel);
+		FileManager fileManager=new FileManager(mapPanel);
 		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,datePanel);
 		
 		mainFrame.getContentPane().add(BorderLayout.CENTER,innerPanel);
