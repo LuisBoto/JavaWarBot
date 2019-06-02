@@ -2,6 +2,7 @@ package nicholasJohnstone.MappingApp;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
+public
 class ButtonPanel extends JPanel {	
 	
 	public ButtonPanel() {

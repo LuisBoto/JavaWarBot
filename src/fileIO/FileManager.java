@@ -1,8 +1,16 @@
-package nicholasJohnstone.MappingApp;
+package fileIO;
 import java.io.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+
+import nicholasJohnstone.MappingApp.DrawPanel;
+import nicholasJohnstone.MappingApp.ImageListener;
+import nicholasJohnstone.MappingApp.MapPanel;
+import nicholasJohnstone.MappingApp.Plot;
+import nicholasJohnstone.MappingApp.PlotListener;
+import nicholasJohnstone.MappingApp.State;
+
 import java.util.*;
 import java.awt.image.*;
 import javax.imageio.*;

@@ -1,5 +1,8 @@
 package nicholasJohnstone.MappingApp;
 import javax.swing.*;
+
+import fileIO.FileManager;
+
 import java.awt.event.*;
 /**
  *Displays file/edit menus and zoom in/out buttons

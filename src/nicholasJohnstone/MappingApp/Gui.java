@@ -1,5 +1,10 @@
 package nicholasJohnstone.MappingApp;
+
+
 import javax.swing.*;
+import fileIO.FileManager;
+import nicholasJohnstone.MappingApp.*;
+
 import java.awt.*;
 
 public class Gui{

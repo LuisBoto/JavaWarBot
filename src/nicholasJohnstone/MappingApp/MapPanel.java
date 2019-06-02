@@ -8,6 +8,7 @@ import java.awt.image.*;
  * Displays a background image and user-drawn polygons ("plots"), rescalable, shows popups on left and right clicks
  */
 @SuppressWarnings("serial")
+public
 class MapPanel extends JPanel {	
 	
 	private static final String NEW_PLOT_LABEL="Add New Plot";

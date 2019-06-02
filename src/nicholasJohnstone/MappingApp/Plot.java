@@ -3,9 +3,9 @@ import java.awt.*;
 import java.util.*;  
 import java.io.*;
 /**
- * Contains a polygon and list of deeds, can update color to reflect current owner
+ * Contains a polygon 
  */
-class Plot implements Serializable{	
+public class Plot implements Serializable{	
 	
 	private static final long serialVersionUID = 1L;	
 	private static final Color DEFAULT_COLOR=new Color(224,224,224);

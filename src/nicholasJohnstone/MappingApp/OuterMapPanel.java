@@ -1,5 +1,8 @@
 package nicholasJohnstone.MappingApp;
 import javax.swing.*;
+
+import fileIO.FileManager;
+
 import java.awt.image.*;
 /**
  * Places the MapPanel in a scrollable pane, handles zooming/dragging, swaps between MapPanel and DrawPanel
