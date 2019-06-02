@@ -14,8 +14,17 @@ public class Plot implements Serializable{
 	private ArrayList<DoublePoint> pointList= new ArrayList<DoublePoint>();
 	private Polygon polygon=new Polygon();
 	
-	public void update() {
-		color=DEFAULT_COLOR;		
+	public void update(String name) {
+		if (name != null) {
+			//We'll calculate a color from the given name
+			byte[] chain = name.getBytes();
+			int r = chain[0];
+			int g = chain[chain.length-1];
+			int b = chain[chain.length/2];
+			color=new Color(r, g, b);	
+		} else {
+			color = DEFAULT_COLOR;
+		}
 	}
 
 	public void rescale(double scale){

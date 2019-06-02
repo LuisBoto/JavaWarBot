@@ -13,6 +13,7 @@ class MapPanel extends JPanel {
 	
 	private static final String NEW_PLOT_LABEL="Add New Plot";
 	private static final String DELETE_PLOT_LABEL="Delete Plot";
+	private static final String NAME_GOVERNMENT_LABEL="Set Goverment...";
 	
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();		
 	private PlottingMenu newDeedPopup= this.new PlottingMenu();							
@@ -47,7 +48,7 @@ class MapPanel extends JPanel {
 	
 	public void update() {
 		for(Plot plot:plotList){
-			plot.update();	
+			plot.update(null);	
 		}
 	}
 
@@ -134,6 +135,8 @@ class MapPanel extends JPanel {
 			JMenuItem deletePlotItem = new JMenuItem(DELETE_PLOT_LABEL);	
 			add(deletePlotItem);
 			deletePlotItem.addActionListener(MapPanel.this.new PlotDeleteListener(plot));
+			JMenuItem governmentPlotItem = new JMenuItem(NAME_GOVERNMENT_LABEL);	
+			add(deletePlotItem);
 		}
 
 		public void mousePressed(MouseEvent e){}
@@ -153,6 +156,7 @@ class MapPanel extends JPanel {
 		public void actionPerformed(ActionEvent event){
 			plotList.remove(plot);
 			repaint();
+			validate();
 		}
 	}
 	

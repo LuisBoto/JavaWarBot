@@ -33,15 +33,6 @@ public class OuterMapPanel extends JScrollPane implements ImageListener, PlotLis
 		mapPanel.addMouseListener(scroller);
 		mapPanel.addMouseMotionListener(scroller);
 	}
-	
-	public void yearChanged(){					
-		mapPanel.update();
-		repaint();
-	}
-
-	public void ownerChanged(){						
-		repaint();
-	}
 
 	public void plotChanged(){				
 		repaint();

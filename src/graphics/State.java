@@ -1,8 +1,6 @@
 package graphics;
 import java.util.*;
 
-import fileIO.FileManager;
-
 import java.io.*;
 /**
  * Contains infomation required to save file
