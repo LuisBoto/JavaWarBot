@@ -1,9 +1,9 @@
-package nicholasJohnstone.MappingApp;
+package graphics;
 
 
 import javax.swing.*;
 import fileIO.FileManager;
-import nicholasJohnstone.MappingApp.*;
+import graphics.*;
 
 import java.awt.*;
 

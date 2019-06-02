@@ -1,4 +1,4 @@
-package nicholasJohnstone.MappingApp;
+package graphics;
 import javax.swing.*;
 
 import fileIO.FileManager;

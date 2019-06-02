@@ -1,4 +1,4 @@
-package nicholasJohnstone.MappingApp;
+package graphics;
 import java.io.*;
 /**
  * Scalable 2d point with double precision

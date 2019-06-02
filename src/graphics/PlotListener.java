@@ -1,4 +1,4 @@
-package nicholasJohnstone.MappingApp;
+package graphics;
 public interface PlotListener {
 	void plotChanged();
 }

@@ -18,13 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import nicholasJohnstone.MappingApp.DoublePoint;
-import nicholasJohnstone.MappingApp.DrawPanel;
-import nicholasJohnstone.MappingApp.ImageListener;
-import nicholasJohnstone.MappingApp.MapPanel;
-import nicholasJohnstone.MappingApp.Plot;
-import nicholasJohnstone.MappingApp.PlotListener;
-import nicholasJohnstone.MappingApp.State;
+import graphics.DoublePoint;
+import graphics.DrawPanel;
+import graphics.ImageListener;
+import graphics.MapPanel;
+import graphics.Plot;
+import graphics.PlotListener;
+import graphics.State;
 /**
  * Provides saving facilities, when window is closed offers to save unsaved progress
  */
@@ -111,7 +111,6 @@ public class FileManager extends WindowAdapter implements PlotListener {
 					int x = Integer.parseInt(parts[j].split(" ")[1]);
 					int y = Integer.parseInt(parts[j].split(" ")[3]);
 					plot.addPoint(x, y);
-					System.out.println(x+" "+y);
 					j++;
 				}
 				fields.add(plot);

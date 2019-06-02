@@ -1,4 +1,4 @@
-package nicholasJohnstone.MappingApp;
+package graphics;
 import java.awt.*;
 import java.util.*;  
 import java.io.*;
