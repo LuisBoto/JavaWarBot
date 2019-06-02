@@ -9,7 +9,11 @@ public class Locality {
 	private String name;
 	private String government;
 	private Plot graphic;
-	ArrayList<Locality> frontiers;
+	ArrayList<Locality> frontiers = new ArrayList<Locality>();
+	
+	public Locality(Plot graph) {
+		this.graphic = graph;
+	};
 	
 	public Locality() {};
 	

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import fileIO.FileManager;
 import graphics.*;
+import politicalLogic.Warfield;
 
 import java.awt.*;
 
@@ -12,10 +13,11 @@ public class GUI{
 	}
 	
 	private void go() {
+		Warfield w = new Warfield();
 		MainFrame mainFrame=new MainFrame();
 		JPanel innerPanel = new JPanel();		
 		ButtonPanel datePanel= new ButtonPanel();
-		MapPanel mapPanel = new MapPanel();
+		MapPanel mapPanel = new MapPanel(w);
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);		
 		FileManager.setParentFrame(mainFrame);
 		FileManager fileManager=new FileManager(mapPanel);

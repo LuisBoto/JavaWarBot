@@ -1,164 +1,211 @@
 package graphics;
-import java.util.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
+import politicalLogic.Locality;
+import politicalLogic.Warfield;
+
 /**
- * Displays a background image and user-drawn polygons ("plots"), rescalable, shows popups on left and right clicks
+ * Displays a background image and user-drawn polygons ("plots"), rescalable,
+ * shows popups on left and right clicks
  */
 @SuppressWarnings("serial")
-public
-class MapPanel extends JPanel {	
-	
-	private static final String NEW_PLOT_LABEL="Add New Plot";
-	private static final String DELETE_PLOT_LABEL="Delete Plot";
-	private static final String NAME_GOVERNMENT_LABEL="Set Goverment...";
-	
-	private ArrayList<Plot> plotList = new ArrayList<Plot>();		
-	private PlottingMenu newDeedPopup= this.new PlottingMenu();							
-	private OuterMapPanel outerMapPanel;
-	private BufferedImage mapImage=null;
-	private DoublePoint trueSize;
+public class MapPanel extends JPanel {
 
-	public MapPanel() {
+	private static final String NEW_PLOT_LABEL = "Add New Plot";
+	private static final String DELETE_PLOT_LABEL = "Delete Plot";
+	private static final String NAME_GOVERNMENT_LABEL = "Set Goverment...";
+
+	private ArrayList<Plot> plotList = new ArrayList<Plot>();
+	private PlottingMenu newDeedPopup = this.new PlottingMenu();
+	private OuterMapPanel outerMapPanel;
+	private BufferedImage mapImage = null;
+	private DoublePoint trueSize;
+	private Warfield warf;
+
+	public MapPanel(Warfield w) {
+		warf = w;
 		addMouseListener(newDeedPopup);
-		trueSize=new DoublePoint(600,600);
+		trueSize = new DoublePoint(600, 600);
 	}
 
 	public void paintComponent(Graphics g) {
-		double width= trueSize.getX();
-		double height= trueSize.getY();
+		double width = trueSize.getX();
+		double height = trueSize.getY();
 		g.setColor(Color.BLACK);
-		g.clearRect(0,0,(int) (width*OuterMapPanel.SCALE_FACTOR*2),(int) (height*OuterMapPanel.SCALE_FACTOR*2));
-		g.drawImage(mapImage,0,0,(int) width,(int) height,null);
-		g.drawRect(0,0,(int) width,(int) height);
+		g.clearRect(0, 0, (int) (width * OuterMapPanel.SCALE_FACTOR * 2),
+				(int) (height * OuterMapPanel.SCALE_FACTOR * 2));
+		g.drawImage(mapImage, 0, 0, (int) width, (int) height, null);
+		g.drawRect(0, 0, (int) width, (int) height);
 		Graphics2D g2 = (Graphics2D) g;
-   		g2.setStroke(new BasicStroke(3));
-		for(Plot plot: plotList){
-			Polygon polygon=plot.getPolygon();
+		g2.setStroke(new BasicStroke(3));
+		for (Plot plot : plotList) {
+			Polygon polygon = plot.getPolygon();
 			g2.setColor(plot.getColor());
 			g2.fillPolygon(polygon);
 			g2.setColor(Color.BLACK);
 			g2.drawPolygon(polygon);
 		}
-		setPreferredSize(new Dimension((int) width,(int) height));
+		setPreferredSize(new Dimension((int) width, (int) height));
 		revalidate();
 	}
-	
+
 	public void update() {
-		for(Plot plot:plotList){
-			plot.update(null);	
+		for (Plot plot : plotList) {
+			plot.update(null);
 		}
 	}
 
-	public boolean setImage(BufferedImage image){
-		if(image!=null) {
-			mapImage=image;
+	public boolean setImage(BufferedImage image) {
+		if (image != null) {
+			mapImage = image;
 			resetImageSize();
 			return true;
-		} 
+		}
 		return false;
-		
-	}	
 
-	public void resetImageSize(){					
-		trueSize=new DoublePoint(mapImage.getWidth(null), mapImage.getHeight(null));
 	}
 
-	public void setOuterMapPanel(OuterMapPanel outerMapPanel){
-		this.outerMapPanel=outerMapPanel;
+	public void resetImageSize() {
+		trueSize = new DoublePoint(mapImage.getWidth(null), mapImage.getHeight(null));
 	}
 
-	public void rescale(double scale){
+	public void setOuterMapPanel(OuterMapPanel outerMapPanel) {
+		this.outerMapPanel = outerMapPanel;
+	}
+
+	public void rescale(double scale) {
 		trueSize.rescale(scale);
-		for(Plot plot:plotList){
+		for (Plot plot : plotList) {
 			plot.rescale(scale);
 		}
 	}
 
-	public Plot plotContained(MouseEvent e){
+	public Plot plotContained(MouseEvent e) {
 		Plot plot;
-		for(int i=plotList.size()-1;i>=0;i--){
-			plot=plotList.get(i);
-			if(plot.getPolygon().contains(e.getX(),e.getY())) {
+		for (int i = plotList.size() - 1; i >= 0; i--) {
+			plot = plotList.get(i);
+			if (plot.getPolygon().contains(e.getX(), e.getY())) {
 				return plot;
 			}
 		}
-		return null;	
+		return null;
 	}
-	public void addPlot(Plot newPlot){
+
+	public void addPlot(Plot newPlot) {
 		plotList.add(newPlot);
 	}
-	
-	public ArrayList<Plot> getPlots(){
+
+	public ArrayList<Plot> getPlots() {
 		return plotList;
 	}
 
-	public void setPlotList(ArrayList<Plot> x){
-		plotList=x;
+	public void setPlotList(ArrayList<Plot> x) {
+		plotList = x;
 	}
 
-	public DoublePoint getImageSize(){
+	public DoublePoint getImageSize() {
 		return trueSize;
 	}
-	
-	public void setImageSize(DoublePoint size){
-		trueSize=size;
+
+	public void setImageSize(DoublePoint size) {
+		trueSize = size;
 	}
 
-	class PlottingMenu extends JPopupMenu implements MouseListener{
-		
-		public void mouseClicked(MouseEvent e){
+	class PlottingMenu extends JPopupMenu implements MouseListener {
 
-			if (e.getButton()==MouseEvent.BUTTON3){
+		public void mouseClicked(MouseEvent e) {
+
+			if (e.getButton() == MouseEvent.BUTTON3) {
 				buildMenu(plotContained(e));
-				this.show(e.getComponent(),e.getX(), e.getY());
+				this.show(e.getComponent(), e.getX(), e.getY());
 			}
 		}
-		
+
 		public void buildMenu(Plot plot){
 			removeAll();
-			JMenuItem addPlotIcon=new JMenuItem(NEW_PLOT_LABEL);
-			addPlotIcon.addActionListener(new ActionListener(){
+			JMenuItem addPlotItem=new JMenuItem(NEW_PLOT_LABEL);
+			addPlotItem.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					outerMapPanel.drawShape();
 				}
 			});
 			//Clicking on empty map only prompts new plot option
 			if(plot==null) {
-				add(addPlotIcon);
+				add(addPlotItem);
 				return;
 			}	
 			//Clicking on a plot shows other options			
-			add(addPlotIcon);	
+			add(addPlotItem);	
 			JMenuItem deletePlotItem = new JMenuItem(DELETE_PLOT_LABEL);	
 			add(deletePlotItem);
 			deletePlotItem.addActionListener(MapPanel.this.new PlotDeleteListener(plot));
-			JMenuItem governmentPlotItem = new JMenuItem(NAME_GOVERNMENT_LABEL);	
+			JMenuItem governmentPlotItem = new JMenuItem(NAME_GOVERNMENT_LABEL);
+			Locality lo = warf.getLocalityFromPlot(plot);
+			if (lo == null) {
+				governmentPlotItem.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						String gov = JOptionPane.showInputDialog(null, "Locality's government is...", "Input government", 2);
+						Locality l = new Locality();
+						l.setGraphic(plot);
+						l.setGovernment(gov);
+						warf.addLocality(l);
+					}
+				});
+			} else {
+				governmentPlotItem.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						String gov = JOptionPane.showInputDialog(null, "Locality's government is...", "Input government", 2);
+						lo.setGovernment(gov);
+					}
+				});
+			}
+			add(governmentPlotItem);
 			add(deletePlotItem);
 		}
 
-		public void mousePressed(MouseEvent e){}
-		public void mouseEntered(MouseEvent e){}
-		public void mouseExited(MouseEvent e){}
-		public void mouseReleased(MouseEvent e){}
+		public void mousePressed(MouseEvent e) {
+		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+		public void mouseReleased(MouseEvent e) {
+		}
 
 	}
 
-	class PlotDeleteListener implements ActionListener{
+	class PlotDeleteListener implements ActionListener {
 		private Plot plot;
-	
+
 		public PlotDeleteListener(Plot plot) {
-			this.plot=plot;
+			this.plot = plot;
 		}
-		
-		public void actionPerformed(ActionEvent event){
+
+		public void actionPerformed(ActionEvent event) {
 			plotList.remove(plot);
 			repaint();
 			validate();
 		}
 	}
-	
-}
 
+}
