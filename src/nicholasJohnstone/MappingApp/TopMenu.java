@@ -7,7 +7,7 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class TopMenu extends JMenuBar{
 	
-	public TopMenu(OuterMapPanel outerMapPanel,FileManager fileManager,DatePanel datePanel){
+	public TopMenu(OuterMapPanel outerMapPanel,FileManager fileManager,ButtonPanel datePanel){
 		buildFileMenu(fileManager);
 		add(Box.createHorizontalGlue());
 		buildZoomMenu(outerMapPanel);	

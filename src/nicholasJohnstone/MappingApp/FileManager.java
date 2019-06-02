@@ -22,7 +22,7 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 	private JFileChooser fileChooser;
 	private JFileChooser imageChooser;
 	private boolean saved=true;
-	private DatePanel datePanel;
+	private ButtonPanel datePanel;
 	private MapPanel mapPanel;
 	
 	public static void setParentFrame(JFrame newParent){
@@ -33,11 +33,10 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		imageListenerList.add(x);
 	}
 	
-	public FileManager(DatePanel datePanel,MapPanel mapPanel){
+	public FileManager(ButtonPanel datePanel,MapPanel mapPanel){
 		this.mapPanel=mapPanel;
 		this.datePanel=datePanel;
 		DrawPanel.addPlotListener(this);
-		DatePanel.addYearListener(this);
 		fileChooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(EXTENSION_STRING+" files",EXTENSION_STRING);		
 		fileChooser.setFileFilter(filter);
@@ -79,7 +78,6 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		}
 
 		mapPanel.setPlotList(state.getPlots());
-		datePanel.setYearRange(state.getMinYear(),state.getMaxYear());
 		imageFile=state.getImageFile();
 		imageChanged();
 		mapPanel.setImageSize(state.getImageSize());
@@ -109,7 +107,6 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 				}
 
 				mapPanel.setPlotList(state.getPlots());
-				datePanel.setYearRange(state.getMinYear(),state.getMaxYear());
 				imageFile=state.getImageFile();
 				imageChanged();
 				mapPanel.setImageSize(state.getImageSize());

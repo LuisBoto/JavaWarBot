@@ -15,13 +15,11 @@ public class State implements Serializable{
 	private int minYear;
 	private int maxYear;
 
-	public State(FileManager fileManager,DatePanel datePanel,MapPanel mapPanel){
+	public State(FileManager fileManager,ButtonPanel datePanel,MapPanel mapPanel){
 		fields=mapPanel.getPlots();
 		currentFile=fileManager.getFile();
 		imageFile=fileManager.getImageFile();
 		imageSize=mapPanel.getImageSize();
-		minYear=datePanel.getYearMin();
-		maxYear=datePanel.getYearMax();
 	}
 	
 	public ArrayList<Plot> getPlots(){

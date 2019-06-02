@@ -22,7 +22,6 @@ public class OuterMapPanel extends JScrollPane implements ImageListener, OwnerLi
 		setViewportView(contentPanel);
 		this.mapPanel = mapPanel;
 		DrawPanel drawPanel = new DrawPanel(mapPanel);
-		DatePanel.addYearListener(this);
 		FileManager.addImageListener(this);
 		mapPanel.setOuterMapPanel(this);
 		contentPanel.add(mapPanel, MAPPANEL_LABEL);

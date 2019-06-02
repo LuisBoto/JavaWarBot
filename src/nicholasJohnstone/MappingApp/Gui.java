@@ -18,7 +18,7 @@ public class Gui{
 	private void go() {
 		MainFrame mainFrame=new MainFrame();
 		JPanel innerPanel = new JPanel();		
-		DatePanel datePanel= new DatePanel();
+		ButtonPanel datePanel= new ButtonPanel();
 		MapPanel mapPanel = new MapPanel();
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);
 		FileManager fileManager=new FileManager(datePanel,mapPanel);
@@ -32,7 +32,6 @@ public class Gui{
 		
 		FileManager.setParentFrame(mainFrame);
 		fileManager.openDefault();
-		DateRangeEditor.setDialogParent(mainFrame);
 		mainFrame.addWindowListener(fileManager);
 		mainFrame.setVisible(true);
 	}
