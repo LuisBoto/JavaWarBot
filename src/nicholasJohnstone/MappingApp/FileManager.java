@@ -12,12 +12,11 @@ import javax.imageio.*;
 public class FileManager extends WindowAdapter implements OwnerListener,PlotListener,YearListener {
 
 	private static final String EXTENSION_STRING = "afg";
-	private static final String DEFAULT_IMAGE = "resources/Map.jpg";
 	private static ArrayList<ImageListener> imageListenerList=new ArrayList<ImageListener>();
 	private static JFrame parent;
 	
-	private File currentFile;
-	private File imageFile;
+	private File currentFile = new File("resources/defaultState.afg");
+	private File imageFile = new File("resources/Map.jpg");
 	private BufferedImage image;
 	private JFileChooser fileChooser;
 	private JFileChooser imageChooser;
@@ -44,6 +43,7 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		filter = new FileNameExtensionFilter("Image file","jpg","png","bmp","wbmp","gif");		
 		imageChooser.setFileFilter(filter);
 		imageChanged();
+		openDefault();
 	}
 
 	public boolean newState(){	
@@ -61,7 +61,6 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 	
 	public void openDefault() {
 		State state=null;
-		currentFile=new File("resources/defaultState.afg");
 		try {
 			FileInputStream fileIn = new FileInputStream(currentFile);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -152,19 +151,10 @@ public class FileManager extends WindowAdapter implements OwnerListener,PlotList
 		}
 	}
 	public void loadImage() {
-		if(imageFile==null) {
-			try {
-				image=ImageIO.read(this.getClass().getResource(DEFAULT_IMAGE));
-			} catch(Exception e) { 
-				System.out.println("Can't find default image");
-			}
-		}
-		else {
-			try {
-				image=ImageIO.read(imageFile);
-			} catch(Exception e) { 
-				System.out.println("Couldn't load image");
-			}
+		try {
+			image=ImageIO.read(imageFile);
+		} catch(Exception e) { 
+			System.out.println("Couldn't load image");
 		}
 	}
 	
