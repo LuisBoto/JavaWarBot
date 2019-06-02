@@ -15,7 +15,7 @@ class MapPanel extends JPanel {
 	private static final String DELETE_PLOT_LABEL="Delete Plot";
 	
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();		
-	private NewDeedPopup newDeedPopup= this.new NewDeedPopup();							
+	private PlottingMenu newDeedPopup= this.new PlottingMenu();							
 	private OuterMapPanel outerMapPanel;
 	private BufferedImage mapImage=null;
 	private DoublePoint trueSize;
@@ -106,7 +106,7 @@ class MapPanel extends JPanel {
 		trueSize=size;
 	}
 
-	class NewDeedPopup extends JPopupMenu implements MouseListener{
+	class PlottingMenu extends JPopupMenu implements MouseListener{
 		
 		public void mouseClicked(MouseEvent e){
 
