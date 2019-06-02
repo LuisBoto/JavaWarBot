@@ -18,7 +18,6 @@ public class Gui{
 	private void go() {
 		MainFrame mainFrame=new MainFrame();
 		JPanel innerPanel = new JPanel();		
-		OwnerPanel ownerPanel = new OwnerPanel();	
 		DatePanel datePanel= new DatePanel();
 		MapPanel mapPanel = new MapPanel();
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);
@@ -26,7 +25,6 @@ public class Gui{
 		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,datePanel);
 		
 		mainFrame.getContentPane().add(BorderLayout.CENTER,innerPanel);
-		mainFrame.getContentPane().add(BorderLayout.EAST,ownerPanel);
 		innerPanel.setLayout(new BorderLayout());
 		innerPanel.add(BorderLayout.CENTER,outerMapPanel);
 		innerPanel.add(BorderLayout.NORTH,topMenu);

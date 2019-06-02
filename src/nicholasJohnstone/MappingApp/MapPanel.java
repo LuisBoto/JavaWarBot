@@ -12,20 +12,15 @@ class MapPanel extends JPanel {
 	
 	private static final String NEW_PLOT_LABEL="Add New Plot";
 	private static final String DELETE_PLOT_LABEL="Delete Plot";
-	private static final String ADD_OWNER_LABEL="Add Owner";
-	private static final String ADD_NEW_OWNER_LABEL="Add New Owner";
-	private static final String NO_OWNER_LABEL="No Owners";
 	
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();		
-	private NewDeedPopup newDeedPopup= this.new NewDeedPopup();				
-	private InfoPopup infoPopup= this.new InfoPopup();				
+	private NewDeedPopup newDeedPopup= this.new NewDeedPopup();							
 	private OuterMapPanel outerMapPanel;
 	private BufferedImage mapImage=null;
 	private DoublePoint trueSize;
 
 	public MapPanel() {
 		addMouseListener(newDeedPopup);
-		addMouseListener(infoPopup);
 		trueSize=new DoublePoint(600,600);
 	}
 
@@ -139,43 +134,6 @@ class MapPanel extends JPanel {
 			add(deletePlotItem);
 			deletePlotItem.addActionListener(MapPanel.this.new PlotDeleteListener(plot));
 		}
-
-		public void mousePressed(MouseEvent e){}
-		public void mouseEntered(MouseEvent e){}
-		public void mouseExited(MouseEvent e){}
-		public void mouseReleased(MouseEvent e){}
-
-	}
-
-	class InfoPopup extends JPopupMenu implements MouseListener {
-
-		public void mouseClicked(MouseEvent e){	
-			if (e.getButton()==MouseEvent.BUTTON1){
-				Plot plot=plotContained(e);
-				buildMenu(plot);
-				this.show(e.getComponent(),e.getX(), e.getY());
-			}
-		}
-		
-		public void buildMenu(Plot plot){
-			this.removeAll();
-			if(plot!=null){
-				Set<Deed> registrations=plot.getDeeds();
-				if(registrations.isEmpty()){
-					this.add(new JLabel(NO_OWNER_LABEL));
-				} else {
-					for(Deed registration:registrations){
-						JMenuItem registrationItem=new JMenuItem(registration.toString());
-						this.add(registrationItem);
-						registrationItem.addActionListener(new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								registration.getManager().update();
-							}
-						});
-					}
-				}
-			}
-		}	
 
 		public void mousePressed(MouseEvent e){}
 		public void mouseEntered(MouseEvent e){}
