@@ -128,40 +128,16 @@ class MapPanel extends JPanel {
 					outerMapPanel.drawShape();
 				}
 			});
+			//Clicking on empty map only prompts new plot option
 			if(plot==null) {
 				add(addPlotIcon);
 				return;
 			}	
-			JMenu ownersMenu = new JMenu(ADD_OWNER_LABEL);
-			add(ownersMenu);
+			//Clicking on a plot shows other options			
 			add(addPlotIcon);	
 			JMenuItem deletePlotItem = new JMenuItem(DELETE_PLOT_LABEL);	
 			add(deletePlotItem);
 			deletePlotItem.addActionListener(MapPanel.this.new PlotDeleteListener(plot));
-			if(OwnerManager.getOwners().isEmpty()){
-				ownersMenu.add(new JLabel(NO_OWNER_LABEL));
-			} else {						
-				for(Owner owner : OwnerManager.getOwners()) {
-					JMenuItem ownerItem=new JMenuItem(owner.toString());
-					ownersMenu.add(ownerItem);
-					ownerItem.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							DeedManager.makeNewDeed(plot,owner);
-						}
-					});
-				}
-			}
-			ownersMenu.addSeparator();
-			JMenuItem addNewOwnerItem=new JMenuItem(ADD_NEW_OWNER_LABEL);
-			ownersMenu.add(addNewOwnerItem);
-			addNewOwnerItem.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					Owner owner=OwnerManager.makeNewOwner();
-					if(owner!=null){
-						DeedManager.makeNewDeed(plot,owner);
-					}
-				}
-			});
 		}
 
 		public void mousePressed(MouseEvent e){}
