@@ -29,6 +29,7 @@ class ButtonPanel extends JPanel {
 	private JButton getBtnFinish() {
 		if (btnFinish == null) {
 			btnFinish = new JButton("Finish");
+			btnFinish.setMnemonic('f');
 			btnFinish.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					warf.fullWar();
@@ -45,6 +46,7 @@ class ButtonPanel extends JPanel {
 	private JButton getBtnStep() {
 		if (btnStep == null) {
 			btnStep = new JButton("Step");
+			btnStep.setMnemonic('s');
 			btnStep.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					warf.stepWar();
