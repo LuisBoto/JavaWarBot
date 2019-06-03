@@ -14,4 +14,8 @@ By default, the program uses a Spain political map. This serves as an example, b
 There's functionality allowing users to save and load simulations and maps as .txt files that are easily edited by hand. Keep in mind, you still need to keep the map image file. 
 
 # Also check...
-Although heavily modified by now, initial code sample was forked from https://github.com/NicholasJohnstone/MappingApp
+-Although heavily modified by now, initial code sample was forked from:
+https://github.com/NicholasJohnstone/MappingApp
+
+-Based on the twitter bot WorldWarBot 2020:
+https://twitter.com/worldwarbot
