@@ -177,7 +177,14 @@ public class MapPanel extends JPanel {
 				JMenu frontierList = new JMenu("Frontiers");
 				for (int i=0; i<lo.getFrontiers().size(); i++) {
 					if(lo.getFrontiers().get(i).getName()!=null) {
-						JMenuItem nombre = new JMenuItem(lo.getFrontiers().get(i).getName());
+						String nom = lo.getFrontiers().get(i).getName();
+						JMenuItem nombre = new JMenuItem(nom);
+						nombre.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								lo.removeFrontier(warf.getLocalityFromName(nom));
+								warf.getLocalityFromName(nom).removeFrontier(lo);
+							}
+						});
 						frontierList.add(nombre);
 					}
 				}
