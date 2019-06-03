@@ -1097,7 +1097,7 @@ x 458 y 138
 x 458 y 138
 x 458 y 138
 x 458 y 138
-Plot-name:Vizcaya_government:Vizcaya-Cantabria_Burgos_Alava_Alava_
+Plot-name:Vizcaya_government:Vizcaya-Cantabria_Burgos_Guipuzcoa_Alava_
 x 522 y 78
 x 522 y 78
 x 530 y 78
@@ -1172,7 +1172,7 @@ x 526 y 78
 x 526 y 78
 x 526 y 78
 x 526 y 78
-Plot-name:Alava_government:Guipuzcoa-Alava_Vizcaya_
+Plot-name:Guipuzcoa_government:Guipuzcoa-Vizcaya_Navarra_Alava_
 x 593 y 78
 x 593 y 78
 x 605 y 78
@@ -1237,7 +1237,7 @@ x 588 y 82
 x 588 y 82
 x 588 y 82
 x 588 y 82
-Plot-name:Alava_government:Alava-Vizcaya_Alava_La rioja_Burgos_Navarra_
+Plot-name:Alava_government:Alava-La rioja_Burgos_Navarra_Vizcaya_Guipuzcoa_
 x 532 y 97
 x 532 y 97
 x 537 y 97
@@ -1350,7 +1350,7 @@ x 530 y 93
 x 530 y 93
 x 530 y 93
 x 530 y 93
-Plot-name:La rioja_government:La rioja-Burgos_Alava_Soria_Navarra_Zaragoza_
+Plot-name:La rioja_government:La rioja-Burgos_Soria_Navarra_Zaragoza_Alava_
 x 551 y 149
 x 551 y 149
 x 555 y 153
@@ -2125,7 +2125,7 @@ x 763 y 549
 x 775 y 549
 x 775 y 549
 x 787 y 551
-Plot-name:Navarra_government:Navarra-Alava_La rioja_Huesca_Zaragoza_
+Plot-name:Navarra_government:Navarra-Guipuzcoa_La rioja_Huesca_Zaragoza_Alava_
 x 644 y 78
 x 644 y 78
 x 653 y 78

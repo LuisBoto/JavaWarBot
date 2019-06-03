@@ -26,7 +26,7 @@ public class Locality {
 	}
 	
 	public void addFrontier(Locality f) {
-		if (!frontiers.contains(f))
+		if (!frontiers.contains(f) && !f.getName().equals(this.name))
 			frontiers.add(f);
 	}
 	
