@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class MapPanel extends JPanel {
 	private static final String DELETE_PLOT_LABEL = "Delete Plot";
 	private static final String NAME_GOVERNMENT_LABEL = "Set zone's Goverment...";
 	private static final String NAME_LOCALITY_LABEL = "Set zone's Name...";
+	private static final String ADD_FRONTIER_LABEL = "Add new Frontier...";
 
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();
 	private PlottingMenu plottingMenu = new PlottingMenu(); //Shows when right-clicking the panel
@@ -40,6 +42,8 @@ public class MapPanel extends JPanel {
 	private BufferedImage mapImage = null;
 	private DoublePoint trueSize;
 	private Warfield warf;
+	private boolean frontierSelecting = false;
+	private Locality auxLocality; //Variable to store initial locality while selecting a frontier
 
 	public MapPanel(Warfield w) {
 		warf = w;
@@ -133,7 +137,17 @@ public class MapPanel extends JPanel {
 	class PlottingMenu extends JPopupMenu implements MouseListener {
 
 		public void mouseClicked(MouseEvent e) {
-
+			if(e.getButton() == MouseEvent.BUTTON1) {
+				if(frontierSelecting) {
+					Locality loc = warf.getLocalityFromPlot(plotContained(e));
+					if(loc!=null) {
+						loc.addFrontier(auxLocality);
+						auxLocality.addFrontier(loc);
+					}
+					auxLocality = null;
+					frontierSelecting = false;
+				}
+			}			
 			if (e.getButton() == MouseEvent.BUTTON3) {
 				buildMenu(plotContained(e));
 				this.show(e.getComponent(), e.getX(), e.getY());
@@ -160,6 +174,24 @@ public class MapPanel extends JPanel {
 					add(new JMenuItem("Government: "+lo.getGovernment()));
 				if(lo.getName()!=null)
 					add(new JMenuItem("Local name: "+lo.getName()));
+				JMenu frontierList = new JMenu("Frontiers");
+				for (int i=0; i<lo.getFrontiers().size(); i++) {
+					if(lo.getFrontiers().get(i).getName()!=null) {
+						JMenuItem nombre = new JMenuItem(lo.getFrontiers().get(i).getName());
+						frontierList.add(nombre);
+					}
+				}
+				if (lo.getFrontiers().size()>0)
+					add(frontierList);
+				JMenuItem addFrontierItem = new JMenuItem(ADD_FRONTIER_LABEL);
+				addFrontierItem.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						//After this, user must click on another locality to add a Frontier.
+						frontierSelecting = true;
+						auxLocality = lo;
+					}
+				});
+				add(addFrontierItem);
 				add(new JSeparator());
 			}
 			add(addPlotItem);	
