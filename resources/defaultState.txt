@@ -271,7 +271,7 @@ x 152 y 36
 x 152 y 36
 x 152 y 36
 x 152 y 36
-Plot-name:La Coruña_government:La Coruña-Lugo_Ourense_Pontevedra_
+Plot-name:La Coruña_government:La Coruña-Lugo_Pontevedra_
 x 117 y 24
 x 117 y 24
 x 113 y 21
@@ -533,7 +533,7 @@ x 53 y 104
 x 53 y 104
 x 53 y 104
 x 53 y 104
-Plot-name:Ourense_government:Ourense-Leon_Lugo_Pontevedra_La Coruña_
+Plot-name:Ourense_government:Ourense-Leon_Lugo_Pontevedra_
 x 86 y 142
 x 86 y 142
 x 87 y 146
@@ -672,7 +672,7 @@ x 86 y 142
 x 86 y 142
 x 86 y 142
 x 86 y 142
-Plot-name:Cantabria_government:Cantabria-Asturias_Leon_
+Plot-name:Cantabria_government:Cantabria-Asturias_Leon_Palencia_Burgos_Vizcaya_
 x 276 y 63
 x 276 y 63
 x 273 y 67
@@ -960,7 +960,7 @@ x 159 y 92
 x 159 y 92
 x 159 y 92
 x 159 y 92
-Plot-name:Palencia_government:Palencia-Leon_
+Plot-name:Palencia_government:Palencia-Leon_Cantabria_Burgos_
 x 318 y 97
 x 318 y 97
 x 318 y 100
@@ -1097,7 +1097,7 @@ x 319 y 97
 x 319 y 97
 x 319 y 97
 x 319 y 97
-Plot-
+Plot-name:Vizcaya_government:Vizcaya-Cantabria_Burgos_
 x 364 y 55
 x 364 y 55
 x 369 y 55
@@ -1172,7 +1172,7 @@ x 366 y 55
 x 366 y 55
 x 366 y 55
 x 366 y 55
-Plot-
+Plot-name:Alava_government:Guipuzcoa-Burgos_
 x 412 y 55
 x 412 y 55
 x 421 y 55
@@ -1237,7 +1237,7 @@ x 409 y 58
 x 409 y 58
 x 409 y 58
 x 409 y 58
-Plot-
+Plot-name:Alava_government:Alava-
 x 371 y 68
 x 371 y 68
 x 374 y 68
@@ -1350,7 +1350,7 @@ x 369 y 66
 x 369 y 66
 x 369 y 66
 x 369 y 66
-Plot-
+Plot-name:La rioja_government:La rioja-Burgos_
 x 384 y 104
 x 384 y 104
 x 387 y 107
@@ -1483,7 +1483,7 @@ x 383 y 104
 x 383 y 104
 x 383 y 104
 x 383 y 104
-Plot-name:Burgos_government:Burgos-
+Plot-name:Burgos_government:Burgos-Cantabria_Valladolid_Palencia_Segovia_La rioja_Alava_Vizcaya_Soria_
 x 348 y 67
 x 348 y 67
 x 353 y 67
@@ -1672,7 +1672,7 @@ x 348 y 68
 x 348 y 68
 x 348 y 68
 x 348 y 68
-Plot-name:Madrid_government:Madrid-
+Plot-name:Madrid_government:Madrid-Toledo_Segovia_
 x 348 y 213
 x 348 y 213
 x 353 y 219
@@ -1794,7 +1794,7 @@ x 335 y 225
 x 343 y 218
 x 343 y 218
 x 348 y 213
-Plot-
+Plot-name:Segovia_government:Segovia-Burgos_Madrid_
 x 337 y 193
 x 337 y 193
 x 333 y 188
@@ -1889,7 +1889,7 @@ x 338 y 192
 x 338 y 192
 x 338 y 192
 x 338 y 192
-Plot-
+Plot-name:Valencia_government:Valencia-Castellon_Alicante_
 x 474 y 284
 x 474 y 284
 x 478 y 288
@@ -2033,7 +2033,7 @@ x 471 y 290
 x 473 y 288
 x 473 y 288
 x 474 y 283
-Plot-
+Plot-name:Alicante_government:Alicante-Valencia_Murcia_
 x 549 y 384
 x 549 y 384
 x 553 y 384
@@ -2125,7 +2125,7 @@ x 531 y 383
 x 539 y 383
 x 539 y 383
 x 548 y 384
-Plot-
+Plot-name:Navarra_government:Navarra-
 x 449 y 55
 x 449 y 55
 x 454 y 55
@@ -2281,7 +2281,7 @@ x 440 y 62
 x 444 y 58
 x 444 y 58
 x 447 y 56
-Plot-
+Plot-name:Huesca_government:Huesca-Lleida_
 x 505 y 83
 x 505 y 83
 x 501 y 86
@@ -2437,7 +2437,7 @@ x 514 y 91
 x 510 y 88
 x 510 y 88
 x 507 y 83
-Plot-
+Plot-name:Castellon_government:Castellon-Tarragona_Valencia_
 x 559 y 245
 x 559 y 245
 x 555 y 247
@@ -2541,7 +2541,7 @@ x 564 y 253
 x 563 y 248
 x 563 y 248
 x 559 y 245
-Plot-
+Plot-name:Girona_government:Girona-Lleida_Barcelona_
 x 648 y 115
 x 648 y 115
 x 654 y 117
@@ -2671,7 +2671,7 @@ x 649 y 122
 x 648 y 115
 x 648 y 115
 x 649 y 115
-Plot-
+Plot-name:Barcelona_government:Barcelona-Girona_Lleida_Tarragona_
 x 651 y 127
 x 651 y 127
 x 650 y 131
@@ -2792,7 +2792,7 @@ x 652 y 127
 x 652 y 127
 x 652 y 127
 x 652 y 127
-Plot-
+Plot-name:Valladolid_government:Valladolid-Burgos_
 x 266 y 136
 x 266 y 136
 x 262 y 137
@@ -2920,7 +2920,7 @@ x 271 y 145
 x 264 y 143
 x 264 y 143
 x 266 y 136
-Plot-
+Plot-name:Soria_government:Soria-Burgos_
 x 437 y 189
 x 437 y 189
 x 437 y 184
@@ -3086,7 +3086,7 @@ x 437 y 197
 x 438 y 194
 x 438 y 194
 x 437 y 190
-Plot-
+Plot-name:Lleida_government:Lleida-Girona_Barcelona_Tarragona_Huesca_Zaragoza_
 x 589 y 90
 x 589 y 90
 x 598 y 92
@@ -3220,7 +3220,7 @@ x 586 y 96
 x 587 y 90
 x 587 y 90
 x 588 y 89
-Plot-
+Plot-name:Tarragona_government:Tarragona-Lleida_Castellon_Barcelona_
 x 577 y 260
 x 577 y 260
 x 582 y 257
@@ -3512,7 +3512,7 @@ x 617 y 378
 x 619 y 375
 x 619 y 375
 x 619 y 375
-Plot-
+Plot-name:Murcia_government:Murcia-Alicante_
 x 483 y 391
 x 483 y 391
 x 478 y 393
@@ -3668,7 +3668,7 @@ x 489 y 396
 x 486 y 393
 x 486 y 393
 x 483 y 392
-Plot-
+Plot-name:Zaragoza_government:Zaragoza-Lleida_
 x 504 y 217
 x 504 y 217
 x 501 y 217
@@ -3928,7 +3928,7 @@ x 513 y 216
 x 508 y 216
 x 508 y 216
 x 505 y 216
-Plot-
+Plot-name:Toledo_government:Toledo-Madrid_
 x 274 y 287
 x 274 y 287
 x 277 y 284
