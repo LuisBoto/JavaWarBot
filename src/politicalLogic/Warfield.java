@@ -60,6 +60,13 @@ public class Warfield {
 		}
 		return true;
 	}
+	
+
+	public void fullWar() {
+		// Steps war until it is finished
+		while(!isWarFinished())
+			this.stepWar();		
+	}
 
 	public StringBuilder getBattleLog() {
 		return this.battleLog;

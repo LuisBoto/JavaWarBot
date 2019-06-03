@@ -29,6 +29,14 @@ class ButtonPanel extends JPanel {
 	private JButton getBtnFinish() {
 		if (btnFinish == null) {
 			btnFinish = new JButton("Finish");
+			btnFinish.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					warf.fullWar();
+					hp.updateHistory(warf.getBattleLog().toString());
+					mapP.repaint();
+					mapP.validate();
+				}
+			});
 			btnFinish.setFont(new Font("Tahoma", Font.BOLD, 13));
 		}
 		return btnFinish;
