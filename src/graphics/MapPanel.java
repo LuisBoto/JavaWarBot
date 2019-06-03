@@ -174,7 +174,7 @@ public class MapPanel extends JPanel {
 					add(new JMenuItem("Government: "+lo.getGovernment()));
 				if(lo.getName()!=null)
 					add(new JMenuItem("Local name: "+lo.getName()));
-				JMenu frontierList = new JMenu("Frontiers");
+				JMenu frontierList = new JMenu("Frontiers (click to remove)");
 				for (int i=0; i<lo.getFrontiers().size(); i++) {
 					if(lo.getFrontiers().get(i).getName()!=null) {
 						String nom = lo.getFrontiers().get(i).getName();
