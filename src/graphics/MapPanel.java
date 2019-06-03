@@ -28,9 +28,10 @@ import politicalLogic.Warfield;
 @SuppressWarnings("serial")
 public class MapPanel extends JPanel {
 
-	private static final String NEW_PLOT_LABEL = "Add New Plot";
+	private static final String NEW_PLOT_LABEL = "Add new Plot";
 	private static final String DELETE_PLOT_LABEL = "Delete Plot";
-	private static final String NAME_GOVERNMENT_LABEL = "Set Goverment...";
+	private static final String NAME_GOVERNMENT_LABEL = "Set zone's Goverment...";
+	private static final String NAME_LOCALITY_LABEL = "Set zone's Name...";
 
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();
 	private PlottingMenu plottingMenu = new PlottingMenu(); //Shows when right-clicking the panel
@@ -159,6 +160,9 @@ public class MapPanel extends JPanel {
 			JMenuItem governmentPlotItem = new JMenuItem(NAME_GOVERNMENT_LABEL);
 			governmentPlotItem.addActionListener(new PlotGovernmentListener(plot));					
 			add(governmentPlotItem);
+			JMenuItem namePlotItem = new JMenuItem(NAME_LOCALITY_LABEL);
+			namePlotItem.addActionListener(new PlotNameListener(plot));					
+			add(namePlotItem);
 			add(deletePlotItem);
 		}
 
@@ -185,6 +189,29 @@ public class MapPanel extends JPanel {
 
 		public void actionPerformed(ActionEvent event) {
 			plotList.remove(plot);
+			repaint();
+			validate();
+		}
+	}
+	
+	class PlotNameListener implements ActionListener {
+		private Plot plot;
+
+		public PlotNameListener(Plot plot) {
+			this.plot = plot;
+		}
+
+		public void actionPerformed(ActionEvent event) {
+			Locality lo = warf.getLocalityFromPlot(plot);
+			String name = JOptionPane.showInputDialog(null, "Locality's name is...", "Input name", 2);
+			if (lo == null) {
+				Locality l = new Locality();
+				l.setGraphic(plot);
+				l.setName(name);
+				warf.addLocality(l);
+			} else {
+				lo.setName(name);
+			}
 			repaint();
 			validate();
 		}
