@@ -8,12 +8,14 @@ public
 class HistoryPanel extends JPanel {
 	private JTextPane textPane;
 	private JLabel lblHistory;
+	private JScrollPane scrollPane;
+	private JTextPane textPane_1;
 	
 	
 	public HistoryPanel() {
 		setLayout(new BorderLayout(0, 0));
 		add(getLblHistory(), BorderLayout.NORTH);
-		add(getTextPane());		
+		add(getScrollPane(), BorderLayout.CENTER);	
 	}
 
 	private JTextPane getTextPane() {
@@ -36,5 +38,12 @@ class HistoryPanel extends JPanel {
 	
 	public void updateHistory(String log) {
 		getTextPane().setText(log);
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setViewportView(getTextPane());
+		}
+		return scrollPane;
 	}
 }

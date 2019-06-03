@@ -15,9 +15,11 @@ class ButtonPanel extends JPanel {
 	private JButton btnFinish;	
 	private Warfield warf;
 	public HistoryPanel hp;
+	public MapPanel mapP;
 	
-	public ButtonPanel(Warfield war, HistoryPanel hp) {
+	public ButtonPanel(Warfield war, HistoryPanel hp, MapPanel mapPanel) {
 		this.hp = hp;
+		this.mapP = mapPanel;
 		this.warf = war;
 		add(getBtnStep());
 		add(getBtnFinish());
@@ -39,6 +41,8 @@ class ButtonPanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					warf.stepWar();
 					hp.updateHistory(warf.getBattleLog().toString());
+					mapP.repaint();
+					mapP.validate();
 				}
 			});
 			btnStep.setFont(new Font("Tahoma", Font.BOLD, 13));
