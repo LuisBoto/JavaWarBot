@@ -41,5 +41,13 @@ public class Warfield {
 		}
 		return null;
 	}
+	
+	public Locality getLocalityFromName(String name) {
+		for (Locality l : localities) {
+			if (l.getName().equals(name))
+				return l;
+		}
+		return null;
+	}
 
 }

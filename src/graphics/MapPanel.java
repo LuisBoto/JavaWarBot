@@ -281,4 +281,12 @@ public class MapPanel extends JPanel {
 		}
 	}
 
+	public void setWarfield(Warfield warfield) {
+		this.warf = warfield;
+	}
+
+	public Warfield getWarfield() {
+		return this.warf;
+	}
+
 }

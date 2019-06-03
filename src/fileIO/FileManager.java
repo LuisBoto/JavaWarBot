@@ -23,6 +23,8 @@ import graphics.MapPanel;
 import graphics.Plot;
 import graphics.PlotListener;
 import graphics.State;
+import politicalLogic.Locality;
+import politicalLogic.Warfield;
 
 /**
  * Provides saving facilities, when window is closed offers to save unsaved progress
@@ -95,31 +97,56 @@ public class FileManager extends WindowAdapter implements PlotListener {
 		File imageFile;
 		DoublePoint imageSize;
 		ArrayList<Plot> fields = new ArrayList<Plot>();
+		Warfield warfield = new Warfield();
 		String[] parts = content.split("\n");
 		documentFile = new File(parts[0].split("-")[1]);
 		imageFile = new File(parts[1].split("-")[1]);
 		double xsize = Double.parseDouble(parts[2].split("-")[1].split(" ")[0]);
 		double ysize = Double.parseDouble(parts[2].split("-")[1].split(" ")[1]);
 		imageSize = new DoublePoint(xsize, ysize);
-		//Parsing individual plots
+		//Parsing individual plots and corresponding localities
 		for (int i=0; i<parts.length; i++) {
-			if (parts[i].equals("Plot")) {
+			if (parts[i].split("-")[0].equals("Plot")) {
 				int j = i+1;
 				Plot plot = new Plot();
-				while (!parts[j].equals("Plot") && !parts[j].equals("EOF")) {
+				while (!parts[j].split("-")[0].equals("Plot") && !parts[j].equals("EOF")) {
 					int x = Integer.parseInt(parts[j].split(" ")[1]);
 					int y = Integer.parseInt(parts[j].split(" ")[3]);
 					plot.addPoint(x, y);
 					j++;
 				}
 				fields.add(plot);
+				
+				if(parts[i].split("-").length<=1)
+					continue;
+				String data = parts[i].split("-")[1];
+				Locality l = new Locality();
+				l.setName(data.split(" ")[0].split(":")[1]);
+				l.setGraphic(plot);
+				l.setGovernment(data.split(" ")[1].split(":")[1]);
+				warfield.addLocality(l);
 			}
 		}
-		return new State(documentFile, imageFile, fields, imageSize);
+		//Parsing frontiers
+		for (int i=0; i<parts.length; i++) {
+			if (parts[i].split("-")[0].equals("Plot")) {
+				if(parts[i].split("-").length<=2)
+					continue;
+				String data = parts[i].split("-")[2];
+				String name =  parts[i].split("-")[1].split(" ")[0].split(":")[1];
+				Locality l = warfield.getLocalityFromName(name);
+				String[] fronts = data.split(" ");
+				for (String f : fronts) {
+					l.addFrontier(warfield.getLocalityFromName(f));
+				}
+			}
+		}
+		return new State(documentFile, imageFile, fields, imageSize, warfield);
 	}
 	
 	public void loadState(State state) {
 		mapPanel.setPlotList(state.getPlots());
+		mapPanel.setWarfield(state.getWarfield());
 		imageFile=state.getImageFile();
 		imageChanged();
 		mapPanel.setImageSize(state.getImageSize());
@@ -158,12 +185,21 @@ public class FileManager extends WindowAdapter implements PlotListener {
 			//We'll parse the Plot list into a .txt file
 			FileWriter fileOut = new FileWriter(currentFile);
 			BufferedWriter out = new BufferedWriter(fileOut);
-			State s = new State(this.currentFile, this.imageFile, mapPanel.getPlots(), mapPanel.getImageSize());
+			State s = new State(this.currentFile, this.imageFile, mapPanel.getPlots(), mapPanel.getImageSize(), mapPanel.getWarfield());
 			out.write("document file-"+this.currentFile.getPath()+"\n");
 			out.write("image file-"+this.imageFile.getPath()+"\n");
 			out.write("imageSize-"+mapPanel.getImageSize().getX()+" "+mapPanel.getImageSize().getY()+"\n");
 			for (Plot p : s.getPlots()) {
-				out.write("Plot\n");
+				Locality l = s.getWarfield().getLocalityFromPlot(p);
+				String title = "Plot-";
+				if (l!=null) {
+					title+="name:"+l.getName()+" ";
+					title+="government:"+l.getGovernment()+" -";
+					for (int k=0; k<l.getFrontiers().size(); k++) {
+						title+=l.getFrontiers().get(k).getName()+" ";
+					}
+				} 
+				out.write(title+"\n");				
 				for (int i=0; i<p.getPolygon().npoints; i++) {
 					out.write("x "+p.getPolygon().xpoints[i]+" y "+p.getPolygon().ypoints[i]+"\n");
 				}
