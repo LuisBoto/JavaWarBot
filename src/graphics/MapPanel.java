@@ -33,7 +33,7 @@ public class MapPanel extends JPanel {
 	private static final String NAME_GOVERNMENT_LABEL = "Set Goverment...";
 
 	private ArrayList<Plot> plotList = new ArrayList<Plot>();
-	private PlottingMenu newDeedPopup = this.new PlottingMenu();
+	private PlottingMenu plottingMenu = new PlottingMenu(); //Shows when right-clicking the panel
 	private OuterMapPanel outerMapPanel;
 	private BufferedImage mapImage = null;
 	private DoublePoint trueSize;
@@ -41,7 +41,7 @@ public class MapPanel extends JPanel {
 
 	public MapPanel(Warfield w) {
 		warf = w;
-		addMouseListener(newDeedPopup);
+		addMouseListener(plottingMenu);
 		trueSize = new DoublePoint(600, 600);
 	}
 
@@ -155,27 +155,9 @@ public class MapPanel extends JPanel {
 			add(addPlotItem);	
 			JMenuItem deletePlotItem = new JMenuItem(DELETE_PLOT_LABEL);	
 			add(deletePlotItem);
-			deletePlotItem.addActionListener(MapPanel.this.new PlotDeleteListener(plot));
+			deletePlotItem.addActionListener(new PlotDeleteListener(plot));
 			JMenuItem governmentPlotItem = new JMenuItem(NAME_GOVERNMENT_LABEL);
-			Locality lo = warf.getLocalityFromPlot(plot);
-			if (lo == null) {
-				governmentPlotItem.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						String gov = JOptionPane.showInputDialog(null, "Locality's government is...", "Input government", 2);
-						Locality l = new Locality();
-						l.setGraphic(plot);
-						l.setGovernment(gov);
-						warf.addLocality(l);
-					}
-				});
-			} else {
-				governmentPlotItem.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						String gov = JOptionPane.showInputDialog(null, "Locality's government is...", "Input government", 2);
-						lo.setGovernment(gov);
-					}
-				});
-			}
+			governmentPlotItem.addActionListener(new PlotGovernmentListener(plot));					
 			add(governmentPlotItem);
 			add(deletePlotItem);
 		}
@@ -203,6 +185,29 @@ public class MapPanel extends JPanel {
 
 		public void actionPerformed(ActionEvent event) {
 			plotList.remove(plot);
+			repaint();
+			validate();
+		}
+	}
+	
+	class PlotGovernmentListener implements ActionListener {
+		private Plot plot;
+
+		public PlotGovernmentListener(Plot plot) {
+			this.plot = plot;
+		}
+
+		public void actionPerformed(ActionEvent event) {
+			Locality lo = warf.getLocalityFromPlot(plot);
+			String gov = JOptionPane.showInputDialog(null, "Locality's government is...", "Input government", 2);
+			if (lo == null) {
+				Locality l = new Locality();
+				l.setGraphic(plot);
+				l.setGovernment(gov);
+				warf.addLocality(l);
+			} else {
+				lo.setGovernment(gov);
+			}
 			repaint();
 			validate();
 		}

@@ -16,18 +16,18 @@ public class GUI{
 		Warfield w = new Warfield();
 		MainFrame mainFrame=new MainFrame();
 		JPanel innerPanel = new JPanel();		
-		ButtonPanel datePanel= new ButtonPanel();
+		ButtonPanel bPanel= new ButtonPanel();
 		MapPanel mapPanel = new MapPanel(w);
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);		
 		FileManager.setParentFrame(mainFrame);
 		FileManager fileManager=new FileManager(mapPanel);
-		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,datePanel);
+		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,bPanel);
 		
 		mainFrame.getContentPane().add(BorderLayout.CENTER,innerPanel);
 		innerPanel.setLayout(new BorderLayout());
 		innerPanel.add(BorderLayout.CENTER,outerMapPanel);
 		innerPanel.add(BorderLayout.NORTH,topMenu);
-		innerPanel.add(BorderLayout.SOUTH,datePanel);
+		innerPanel.add(BorderLayout.SOUTH,bPanel);
 		
 		mainFrame.addWindowListener(fileManager);
 		mainFrame.setVisible(true);

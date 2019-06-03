@@ -238,16 +238,14 @@ public class FileManager extends WindowAdapter implements PlotListener {
 		}	
 	}
 	
-	public void ownerChanged(){
-		saved=false;
-	}
-		
 	public void plotChanged(){
 		saved=false;
 	}
-
-	public void yearChanged(){
-		saved=false;
+	
+	public boolean isSaved() {
+		return this.saved;
 	}
+
+	
 }
 
