@@ -17,6 +17,7 @@ public class GUI{
 		MainFrame mainFrame=new MainFrame();
 		JPanel innerPanel = new JPanel();		
 		ButtonPanel bPanel= new ButtonPanel();
+		HistoryPanel hPanel = new HistoryPanel();
 		MapPanel mapPanel = new MapPanel(w);
 		OuterMapPanel outerMapPanel = new OuterMapPanel(mapPanel);		
 		FileManager.setParentFrame(mainFrame);
@@ -28,6 +29,7 @@ public class GUI{
 		innerPanel.add(BorderLayout.CENTER,outerMapPanel);
 		innerPanel.add(BorderLayout.NORTH,topMenu);
 		innerPanel.add(BorderLayout.SOUTH,bPanel);
+		innerPanel.add(BorderLayout.EAST,hPanel);
 		
 		mainFrame.addWindowListener(fileManager);
 		mainFrame.setVisible(true);
