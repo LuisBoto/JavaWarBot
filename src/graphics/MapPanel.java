@@ -17,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 
 import politicalLogic.Locality;
 import politicalLogic.Warfield;
@@ -153,6 +154,14 @@ public class MapPanel extends JPanel {
 				return;
 			}	
 			//Clicking on a plot shows other options			
+			Locality lo = warf.getLocalityFromPlot(plot);
+			if (lo!=null) {
+				if(lo.getGovernment()!=null)
+					add(new JMenuItem("Government: "+lo.getGovernment()));
+				if(lo.getName()!=null)
+					add(new JMenuItem("Local name: "+lo.getName()));
+				add(new JSeparator());
+			}
 			add(addPlotItem);	
 			JMenuItem deletePlotItem = new JMenuItem(DELETE_PLOT_LABEL);	
 			add(deletePlotItem);
