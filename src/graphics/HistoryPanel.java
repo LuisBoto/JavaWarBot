@@ -33,4 +33,8 @@ class HistoryPanel extends JPanel {
 		}
 		return lblHistory;
 	}
+	
+	public void updateHistory(String log) {
+		getTextPane().setText(log);
+	}
 }

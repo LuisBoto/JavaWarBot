@@ -55,4 +55,14 @@ public class Locality {
 		return this.name;
 	}
 
+	public boolean conqueredAllFrontiers() {
+		//Checks if all of this locality's frontiers share its government
+		for (Locality l:frontiers) {
+			if (!l.getGovernment().equals(this.government)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
