@@ -22,6 +22,8 @@ public class GUI{
 		FileManager.setParentFrame(mainFrame);
 		FileManager fileManager=new FileManager(mapPanel);
 		ButtonPanel bPanel= new ButtonPanel(mapPanel.getWarfield(), hPanel, mapPanel);
+		fileManager.setButtonPanel(bPanel);
+		fileManager.setHistoryPanel(hPanel);
 		TopMenu topMenu = new TopMenu(outerMapPanel,fileManager,bPanel);
 		
 		mainFrame.getContentPane().add(BorderLayout.CENTER,innerPanel);

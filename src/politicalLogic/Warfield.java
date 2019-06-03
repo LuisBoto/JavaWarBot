@@ -17,6 +17,7 @@ public class Warfield {
 		// A war movement. A random locality is selected and so is one of
 		// its frontiers. Winner is chosen randomly and loser changes government to
 		// winner's.
+		int counter = 0;
 		if (isWarFinished()) {
 			battleLog.append("War is finished\n");
 			return;
@@ -25,12 +26,18 @@ public class Warfield {
 		int i = rnd.nextInt(localities.size());
 		Locality offensive = localities.get(i);
 		while (offensive.conqueredAllFrontiers()) {
+			counter++;
+			if(counter>500)
+				return;
 			i = rnd.nextInt(localities.size());
 			offensive = localities.get(i);
 		}
 		i = rnd.nextInt(offensive.getFrontiers().size());
 		Locality defensive = offensive.getFrontiers().get(i);
 		while (defensive.getGovernment().equals(offensive.getGovernment())) {
+			counter++;
+			if(counter>500)
+				return;
 			i = rnd.nextInt(offensive.getFrontiers().size());
 			defensive = offensive.getFrontiers().get(i);
 		}

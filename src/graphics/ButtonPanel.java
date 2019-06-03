@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import politicalLogic.Warfield;
 
@@ -16,6 +17,9 @@ class ButtonPanel extends JPanel {
 	private Warfield warf;
 	public HistoryPanel hp;
 	public MapPanel mapP;
+	private JButton btnAutomate;
+	private boolean isAutoRunning = false;
+	private Timer auto;
 	
 	public ButtonPanel(Warfield war, HistoryPanel hp, MapPanel mapPanel) {
 		this.hp = hp;
@@ -23,6 +27,7 @@ class ButtonPanel extends JPanel {
 		this.warf = war;
 		add(getBtnStep());
 		add(getBtnFinish());
+		add(getBtnAutomate());
 		
 	}
 	
@@ -58,5 +63,41 @@ class ButtonPanel extends JPanel {
 			btnStep.setFont(new Font("Tahoma", Font.BOLD, 13));
 		}
 		return btnStep;
+	}
+	private JButton getBtnAutomate() {
+		if (btnAutomate == null) {
+			btnAutomate = new JButton("Automate");
+			btnAutomate.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (!isAutoRunning) {
+						auto = new Timer (1000, new ActionListener () 
+						{ 
+						    public void actionPerformed(ActionEvent e) 
+						    { 
+						    	warf.stepWar();
+								hp.updateHistory(warf.getBattleLog().toString());
+								mapP.repaint();
+								mapP.validate();
+						    } 
+						}); 
+						isAutoRunning = true;
+						btnAutomate.setText("Stop");
+						auto.start();
+					} else {
+						auto.stop();
+						btnAutomate.setText("Automate");
+						isAutoRunning = false;
+					}
+				}
+			});
+			btnAutomate.setFont(new Font("Tahoma", Font.BOLD, 13));
+		}
+		return btnAutomate;
+	}
+	
+	public void newState(Warfield war, HistoryPanel hp, MapPanel mapPanel) {
+		this.hp = hp;
+		this.mapP = mapPanel;
+		this.warf = war;		
 	}
 }

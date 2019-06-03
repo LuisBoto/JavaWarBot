@@ -16,8 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import graphics.ButtonPanel;
 import graphics.DoublePoint;
 import graphics.DrawPanel;
+import graphics.HistoryPanel;
 import graphics.ImageListener;
 import graphics.MapPanel;
 import graphics.Plot;
@@ -42,6 +44,8 @@ public class FileManager extends WindowAdapter implements PlotListener {
 	private JFileChooser imageChooser;
 	private boolean saved=true;
 	private MapPanel mapPanel;
+	private ButtonPanel buttonPanel;
+	private HistoryPanel hPanel;
 	
 	public static void setParentFrame(JFrame newParent){
 		parent=newParent;
@@ -63,13 +67,23 @@ public class FileManager extends WindowAdapter implements PlotListener {
 		imageChanged();
 		openDefault();
 	}
+	
+	public void setButtonPanel(ButtonPanel bp) {
+		this.buttonPanel = bp;
+	}
+	
+	public void setHistoryPanel(HistoryPanel hp) {
+		this.hPanel = hp;
+	}
 
 	public boolean newState(){	
 		if(confirmClose()){					
 			currentFile=null;		
 
 			mapPanel.setPlotList(new ArrayList<Plot>());
-
+			Warfield w = new Warfield();
+			mapPanel.setWarfield(w);
+			buttonPanel.newState(w, hPanel, mapPanel);
 			parent.setTitle("untitled");
 			saved=true;	
 			return true;
