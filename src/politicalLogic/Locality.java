@@ -26,7 +26,8 @@ public class Locality {
 	}
 	
 	public void addFrontier(Locality f) {
-		frontiers.add(f);
+		if (!frontiers.contains(f))
+			frontiers.add(f);
 	}
 	
 	public void setGraphic(Plot graphic) {

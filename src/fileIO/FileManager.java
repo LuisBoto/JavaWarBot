@@ -121,9 +121,9 @@ public class FileManager extends WindowAdapter implements PlotListener {
 					continue;
 				String data = parts[i].split("-")[1];
 				Locality l = new Locality();
-				l.setName(data.split(" ")[0].split(":")[1]);
+				l.setName(data.split("_")[0].split(":")[1]);
 				l.setGraphic(plot);
-				l.setGovernment(data.split(" ")[1].split(":")[1]);
+				l.setGovernment(data.split("_")[1].split(":")[1]);
 				warfield.addLocality(l);
 			}
 		}
@@ -133,9 +133,9 @@ public class FileManager extends WindowAdapter implements PlotListener {
 				if(parts[i].split("-").length<=2)
 					continue;
 				String data = parts[i].split("-")[2];
-				String name =  parts[i].split("-")[1].split(" ")[0].split(":")[1];
+				String name =  parts[i].split("-")[1].split("_")[0].split(":")[1];
 				Locality l = warfield.getLocalityFromName(name);
-				String[] fronts = data.split(" ");
+				String[] fronts = data.split("_");
 				for (String f : fronts) {
 					l.addFrontier(warfield.getLocalityFromName(f));
 				}
@@ -193,10 +193,10 @@ public class FileManager extends WindowAdapter implements PlotListener {
 				Locality l = s.getWarfield().getLocalityFromPlot(p);
 				String title = "Plot-";
 				if (l!=null) {
-					title+="name:"+l.getName()+" ";
-					title+="government:"+l.getGovernment()+" -";
+					title+="name:"+l.getName()+"_";
+					title+="government:"+l.getGovernment()+"-";
 					for (int k=0; k<l.getFrontiers().size(); k++) {
-						title+=l.getFrontiers().get(k).getName()+" ";
+						title+=l.getFrontiers().get(k).getName()+"_";
 					}
 				} 
 				out.write(title+"\n");				

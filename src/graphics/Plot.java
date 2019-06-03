@@ -18,9 +18,12 @@ public class Plot implements Serializable{
 		if (name != null) {
 			//We'll calculate a color from the given name
 			byte[] chain = name.getBytes();
-			int r = chain[0];
-			int g = chain[chain.length-1];
-			int b = chain[chain.length/2];
+			int r = name.hashCode()%254;
+			r=Math.abs(r);
+			int g = name.substring(1, name.length()).hashCode()%254;
+			g=Math.abs(g);
+			int b = name.substring(0, name.length()-1).hashCode()%254;
+			b=Math.abs(b);
 			color=new Color(r, g, b);	
 		} else {
 			color = DEFAULT_COLOR;
