@@ -9,7 +9,6 @@ class HistoryPanel extends JPanel {
 	private JTextPane textPane;
 	private JLabel lblHistory;
 	private JScrollPane scrollPane;
-	private JTextPane textPane_1;
 	
 	
 	public HistoryPanel() {

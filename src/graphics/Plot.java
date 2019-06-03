@@ -17,7 +17,6 @@ public class Plot implements Serializable{
 	public void update(String name) {
 		if (name != null) {
 			//We'll calculate a color from the given name
-			byte[] chain = name.getBytes();
 			int r = name.hashCode()%254;
 			r=Math.abs(r);
 			int g = name.substring(1, name.length()).hashCode()%254;
