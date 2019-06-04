@@ -99,8 +99,10 @@ public class FileManager extends WindowAdapter implements PlotListener {
 	public void openFrom(){
 		if(confirmClose()){
 			if(fileChooser.showOpenDialog(parent)==JFileChooser.APPROVE_OPTION) {
+				this.newState();
 				currentFile=fileChooser.getSelectedFile();
 				load();
+				this.buttonPanel.newState(mapPanel.getWarfield(), this.hPanel, this.mapPanel);
 			}
 		}
 	}
