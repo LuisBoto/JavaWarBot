@@ -84,7 +84,19 @@ public class Warfield {
 	}
 
 	public void addLocality(Locality l) {
+		for (Locality lo : localities) {
+			if (lo.getName().equals(l.getName()))
+				return;
+		}
 		localities.add(l);
+	}
+	
+	public void rename(Locality lo, String name) {
+		for (Locality loca : localities) {
+			if (loca.getName().equals(name))
+				return;
+		}
+		lo.setName(name);
 	}
 
 	public void addNewLocalityGoverment(String government) {
@@ -94,6 +106,10 @@ public class Warfield {
 	}
 
 	public void addNewLocalityName(String name) {
+		for (Locality lo : localities) {
+			if (lo.getName().equals(name))
+				return;
+		}
 		Locality l = new Locality();
 		l.setName(name);
 		localities.add(l);

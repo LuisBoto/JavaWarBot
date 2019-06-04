@@ -259,7 +259,7 @@ public class MapPanel extends JPanel {
 				l.setName(name);
 				warf.addLocality(l);
 			} else {
-				lo.setName(name);
+				warf.rename(lo, name);
 			}
 			repaint();
 			validate();
