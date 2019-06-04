@@ -236,6 +236,7 @@ public class MapPanel extends JPanel {
 		}
 
 		public void actionPerformed(ActionEvent event) {
+			warf.removeLocality(warf.getLocalityFromPlot(plot));
 			plotList.remove(plot);
 			repaint();
 			validate();

@@ -100,6 +100,9 @@ public class Warfield {
 	}
 
 	public void removeLocality(Locality l) {
+		for (Locality lo: localities) {
+			lo.removeFrontier(l);
+		}
 		localities.remove(l);
 	}
 
