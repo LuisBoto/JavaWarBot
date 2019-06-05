@@ -16,8 +16,6 @@ public class State implements Serializable{
 	private File currentFile;
 	private File imageFile;
 	private DoublePoint imageSize;
-	private int minYear;
-	private int maxYear;
 	
 	public State(File documentF, File imageF, ArrayList<Plot> fields, DoublePoint imgSize, Warfield w){
 		this.warfield = w;
@@ -44,13 +42,5 @@ public class State implements Serializable{
 	}
 	public DoublePoint getImageSize(){
 		return imageSize;
-	}
-
-	public int getMinYear(){
-		return minYear;
-	}
-
-	public int getMaxYear(){
-		return maxYear;
 	}
 }
