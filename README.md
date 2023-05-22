@@ -15,7 +15,7 @@ There's functionality allowing users to save and load simulations and maps as .t
 
 ### Also check...
 -Although heavily modified by now, initial code sample was forked from:
-https://github.com/NicholasJohnstone/MappingApp
+[NicholasJohnstone/MappingApp](http://web.archive.org/web/20201107160003/https://github.com/NicholasJohnstone/MappingApp)
 
 -Based on the twitter bot WorldWarBot 2020:
 https://twitter.com/worldwarbot
